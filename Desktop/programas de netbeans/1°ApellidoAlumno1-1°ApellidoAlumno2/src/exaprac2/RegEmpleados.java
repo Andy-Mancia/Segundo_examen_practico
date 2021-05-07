@@ -5,7 +5,6 @@
  */
 package exaprac2;
 
-import clases.Datos_trabajadores;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
