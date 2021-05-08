@@ -27,7 +27,7 @@ public class RegEmpleados extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
     
     //crear lista para guardar registros la llamare datos
-    List<Datos_trabajadores> datos = new ArrayList<Datos_trabajadores>();
+    List<Datos_trabajadores> datos = new ArrayList<>();
     
     
     public RegEmpleados() {
@@ -55,7 +55,6 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDatos = new javax.swing.JTable();
-        txtempleadoquemasaganado = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         spcanthorastrabajadas = new javax.swing.JSpinner();
         btnModificar = new javax.swing.JButton();
@@ -108,9 +107,6 @@ public class RegEmpleados extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblDatos);
 
-        txtempleadoquemasaganado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtempleadoquemasaganado.setText("()");
-
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Salario por Hora:");
 
@@ -121,7 +117,12 @@ public class RegEmpleados extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText(sumaF);
+        jLabel5.setText("jLabel5");
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cosa(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,14 +156,15 @@ public class RegEmpleados extends javax.swing.JFrame {
                                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtempleadoquemasaganado, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -189,26 +191,22 @@ public class RegEmpleados extends javax.swing.JFrame {
                             .addComponent(spcanthorastrabajadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtempleadoquemasaganado)
-                            .addComponent(jLabel5))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
   
-    
-    ArrayList<Integer> lista = new ArrayList<Integer>();
-    
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         // Creare un objeto llamado prod
         Datos_trabajadores dat = new Datos_trabajadores();
@@ -219,26 +217,12 @@ public class RegEmpleados extends javax.swing.JFrame {
         
         //meter el registro a la lista
         datos.add(dat);
-        double horas = dat.getCantidad_horas_trabajadas();
-        double precio = dat.getSalario_por_hora();
-        
-        double salario = horas * precio;
-        int salarioF = (int)salario;
-        lista.add(salarioF);
-        int max = lista.get(0);
-        
-        
-        for(int i=0;i < lista.size() ;i++){
-          if(lista.get(i)>max)  {
-              max=lista.get(i);
-          }
-        };
-        procesar();
+
         cargar();
         limpiar();
         
     }//GEN-LAST:event_btnAgregarMouseClicked
-
+    
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // POR ACA PROGRAMARE MI BOTON ELIMINAR REGISTRO
         if(JOptionPane.showConfirmDialog(this, "Desea eliminar el registro?", "Titulo",
@@ -297,15 +281,20 @@ public class RegEmpleados extends javax.swing.JFrame {
         smodel.setMinimum(0);
         smodel.setValue(Integer.parseInt(tblDatos.getValueAt(tblDatos.getSelectedRow(), 2).toString()));
         spcanthorastrabajadas.setModel(smodel);
+        procesar();
+        
     }//GEN-LAST:event_tblDatosMouseClicked
+
+    private void cosa(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cosa
+        // TODO add your handling code here:
+        jLabel5.setText(procesar());
+    }//GEN-LAST:event_cosa
     public String procesar(){
-      double suma = 0;
-        for(int i = 0; i < lista.size(); i++){
-            suma += lista.get(i);
-        }; 
-        String sumaF = suma+"";
-        return sumaF;
-    };
+        int horas = Integer.parseInt(tblDatos.getValueAt(tblDatos.getSelectedRow(), 2).toString());
+        String x = String.valueOf(horas);
+        return  x;
+    }
+    public int horas= 0;    
     public void limpiar(){//aca limpio mis campos una ves se agrega mi registro
         txtnombreempleado.setText("");
         txtsalario.setText("");
@@ -373,7 +362,6 @@ public class RegEmpleados extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spcanthorastrabajadas;
     private javax.swing.JTable tblDatos;
-    private javax.swing.JLabel txtempleadoquemasaganado;
     private javax.swing.JTextField txtnombreempleado;
     private javax.swing.JTextField txtsalario;
     // End of variables declaration//GEN-END:variables
