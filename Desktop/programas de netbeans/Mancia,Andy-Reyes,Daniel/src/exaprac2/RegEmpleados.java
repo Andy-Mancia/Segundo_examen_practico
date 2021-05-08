@@ -5,6 +5,8 @@
  */
 package exaprac2;
 
+import exaprac2.Datos_trabajadores;
+import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -57,6 +59,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         spcanthorastrabajadas = new javax.swing.JSpinner();
         btnModificar = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
@@ -118,6 +121,8 @@ public class RegEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText(sumaF);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -154,7 +159,10 @@ public class RegEmpleados extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(txtempleadoquemasaganado))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtempleadoquemasaganado, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -187,7 +195,9 @@ public class RegEmpleados extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtempleadoquemasaganado)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtempleadoquemasaganado)
+                            .addComponent(jLabel5))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(60, Short.MAX_VALUE))
@@ -195,7 +205,10 @@ public class RegEmpleados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  
+    
+    ArrayList<Integer> lista = new ArrayList<Integer>();
+    
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
         // Creare un objeto llamado prod
         Datos_trabajadores dat = new Datos_trabajadores();
@@ -206,8 +219,21 @@ public class RegEmpleados extends javax.swing.JFrame {
         
         //meter el registro a la lista
         datos.add(dat);
-       
-
+        double horas = dat.getCantidad_horas_trabajadas();
+        double precio = dat.getSalario_por_hora();
+        
+        double salario = horas * precio;
+        int salarioF = (int)salario;
+        lista.add(salarioF);
+        int max = lista.get(0);
+        
+        
+        for(int i=0;i < lista.size() ;i++){
+          if(lista.get(i)>max)  {
+              max=lista.get(i);
+          }
+        };
+        procesar();
         cargar();
         limpiar();
         
@@ -272,7 +298,14 @@ public class RegEmpleados extends javax.swing.JFrame {
         smodel.setValue(Integer.parseInt(tblDatos.getValueAt(tblDatos.getSelectedRow(), 2).toString()));
         spcanthorastrabajadas.setModel(smodel);
     }//GEN-LAST:event_tblDatosMouseClicked
-
+    public String procesar(){
+      double suma = 0;
+        for(int i = 0; i < lista.size(); i++){
+            suma += lista.get(i);
+        }; 
+        String sumaF = suma+"";
+        return sumaF;
+    };
     public void limpiar(){//aca limpio mis campos una ves se agrega mi registro
         txtnombreempleado.setText("");
         txtsalario.setText("");
@@ -335,6 +368,7 @@ public class RegEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spcanthorastrabajadas;
