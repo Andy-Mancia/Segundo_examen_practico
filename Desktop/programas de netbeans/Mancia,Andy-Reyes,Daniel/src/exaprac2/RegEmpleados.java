@@ -119,8 +119,8 @@ public class RegEmpleados extends javax.swing.JFrame {
         });
 
         jLabel5.setText("jLabel5");
-        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jLabel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
                 cosa(evt);
             }
         });

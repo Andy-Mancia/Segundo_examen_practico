@@ -253,7 +253,7 @@
         <Property name="text" type="java.lang.String" value="jLabel5"/>
       </Properties>
       <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cosa"/>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="cosa"/>
       </Events>
     </Component>
   </SubComponents>
