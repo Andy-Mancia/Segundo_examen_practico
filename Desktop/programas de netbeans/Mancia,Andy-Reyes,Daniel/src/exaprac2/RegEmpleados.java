@@ -100,6 +100,7 @@ public class RegEmpleados extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3"
             }
         ));
+        tblDatos.setShowGrid(true);
         tblDatos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblDatosMouseClicked(evt);
@@ -281,7 +282,6 @@ public class RegEmpleados extends javax.swing.JFrame {
         smodel.setMinimum(0);
         smodel.setValue(Integer.parseInt(tblDatos.getValueAt(tblDatos.getSelectedRow(), 2).toString()));
         spcanthorastrabajadas.setModel(smodel);
-        procesar();
         
     }//GEN-LAST:event_tblDatosMouseClicked
 
@@ -290,11 +290,11 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel5.setText(procesar());
     }//GEN-LAST:event_cosa
     public String procesar(){
-        int horas = Integer.parseInt(tblDatos.getValueAt(tblDatos.getSelectedRow(), 2).toString());
+        int horas = Integer.parseInt(spcanthorastrabajadas.getValue().toString());
         String x = String.valueOf(horas);
         return  x;
     }
-    public int horas= 0;    
+    
     public void limpiar(){//aca limpio mis campos una ves se agrega mi registro
         txtnombreempleado.setText("");
         txtsalario.setText("");
