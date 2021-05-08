@@ -292,11 +292,15 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel5.setText(procesar());
     }//GEN-LAST:event_cosa
     public String procesar(){
-        int horas = 0;
+        double horas = 0;
+        double pHora = 0;
         for(int n=0;n<contador;n++){
-            horas += Integer.parseInt(tblDatos.getValueAt(n, 2).toString());
+            horas += Double.parseDouble(tblDatos.getValueAt(n, 2).toString());
+            pHora += Double.parseDouble(tblDatos.getValueAt(n, 1).toString());
         }
-        String x = String.valueOf(horas);
+        double sueldo = (horas*pHora);
+        
+        String x = String.valueOf(sueldo);
         return  x;
     }
     
