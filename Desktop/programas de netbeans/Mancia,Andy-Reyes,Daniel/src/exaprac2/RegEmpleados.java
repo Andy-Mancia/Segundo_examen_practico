@@ -59,6 +59,8 @@ public class RegEmpleados extends javax.swing.JFrame {
         spcanthorastrabajadas = new javax.swing.JSpinner();
         btnModificar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
@@ -125,6 +127,10 @@ public class RegEmpleados extends javax.swing.JFrame {
             }
         });
 
+        jLabel7.setText("Total:");
+
+        jLabel8.setText("jLabel8");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,15 +163,16 @@ public class RegEmpleados extends javax.swing.JFrame {
                                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel1)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(43, 43, 43)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -200,8 +207,12 @@ public class RegEmpleados extends javax.swing.JFrame {
                         .addComponent(btnModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)))
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))))
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
@@ -289,9 +300,38 @@ public class RegEmpleados extends javax.swing.JFrame {
 
     private void cosa(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cosa
         // TODO add your handling code here:
-        jLabel5.setText(procesar());
+        jLabel5.setText(planilla());
     }//GEN-LAST:event_cosa
-    public String procesar(){
+    public String ganaMas(){
+        
+        double horas = 0;
+        double pHora = 0;
+        double caja[] = {};
+        Datos_trabajadores datosT[] = new Datos_trabajadores[contador];
+        
+        for(int n=0;n<contador;n++){
+        datosT[n].setNombre_empleado(tblDatos.getValueAt(n, 0).toString());
+        datosT[n].setSalario_por_hora(Integer.parseInt(tblDatos.getValueAt(n, 1).toString()));
+        datosT[n].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(n, 2).toString()));
+        }
+        for(int n=0;n<contador;n++){
+            horas = datosT[n].getCantidad_horas_trabajadas();
+            pHora = datosT[n].getSalario_por_hora();
+            double salario = (horas*pHora);
+            caja[n] = salario;
+        }
+        double max = caja[0];
+        for(int m=0;m<datosT.length;m++){
+            if(caja[m]>max){
+                max=caja[m];
+            }
+        }
+        
+        String x = String.valueOf(max);
+        return  x;
+}
+
+    public String planilla(){
         double horas = 0;
         double pHora = 0;
         for(int n=0;n<contador;n++){
@@ -368,6 +408,8 @@ public class RegEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spcanthorastrabajadas;
     private javax.swing.JTable tblDatos;
