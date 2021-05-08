@@ -25,7 +25,7 @@ public class RegEmpleados extends javax.swing.JFrame {
     
     String [] columnas = {"NOMBRE","SALARIO POR HORA", "CANTIDAD DE HORAS TRABAJADAS"};
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
-    
+    public int contador= 0; //Si, yo se que rompe la encapsulacion. Pero funciona!
     //crear lista para guardar registros la llamare datos
     List<Datos_trabajadores> datos = new ArrayList<>();
     
@@ -218,7 +218,8 @@ public class RegEmpleados extends javax.swing.JFrame {
         
         //meter el registro a la lista
         datos.add(dat);
-
+        
+        contador += 1;
         cargar();
         limpiar();
         
@@ -243,6 +244,7 @@ public class RegEmpleados extends javax.swing.JFrame {
             }
             datos.remove(index);              
         }
+        contador -=1;
         cargar();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
@@ -290,7 +292,10 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel5.setText(procesar());
     }//GEN-LAST:event_cosa
     public String procesar(){
-        int horas = Integer.parseInt(spcanthorastrabajadas.getValue().toString());
+        int horas = 0;
+        for(int n=0;n<contador;n++){
+            horas += Integer.parseInt(tblDatos.getValueAt(n, 2).toString());
+        }
         String x = String.valueOf(horas);
         return  x;
     }
