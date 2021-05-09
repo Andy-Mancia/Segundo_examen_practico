@@ -130,6 +130,11 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel7.setText("Total:");
 
         jLabel8.setText("jLabel8");
+        jLabel8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                otraCosa(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -302,32 +307,36 @@ public class RegEmpleados extends javax.swing.JFrame {
         // TODO add your handling code here:
         jLabel5.setText(planilla());
     }//GEN-LAST:event_cosa
+
+    private void otraCosa(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_otraCosa
+        // TODO add your handling code here:
+        jLabel8.setText(ganaMas());
+    }//GEN-LAST:event_otraCosa
     public String ganaMas(){
         
         double horas = 0;
         double pHora = 0;
         double caja[] = {};
         Datos_trabajadores datosT[] = new Datos_trabajadores[contador];
-        
-        for(int n=0;n<contador;n++){
+
+        for(int n=0;n>contador;n++){
         datosT[n].setNombre_empleado(tblDatos.getValueAt(n, 0).toString());
         datosT[n].setSalario_por_hora(Integer.parseInt(tblDatos.getValueAt(n, 1).toString()));
         datosT[n].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(n, 2).toString()));
-        }
-        for(int n=0;n<contador;n++){
-            horas = datosT[n].getCantidad_horas_trabajadas();
+        horas = datosT[n].getCantidad_horas_trabajadas();
             pHora = datosT[n].getSalario_por_hora();
             double salario = (horas*pHora);
             caja[n] = salario;
         }
+        /*
         double max = caja[0];
-        for(int m=0;m<datosT.length;m++){
+        for(int m=1;m<datosT.length;m++){
             if(caja[m]>max){
                 max=caja[m];
             }
         }
-        
-        String x = String.valueOf(max);
+        */
+        String x = String.valueOf(datosT[0].getNombre_empleado());
         return  x;
 }
 
