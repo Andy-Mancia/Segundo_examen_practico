@@ -292,6 +292,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel10"/>
       </Properties>
+      <Events>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="unaCosaMas"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

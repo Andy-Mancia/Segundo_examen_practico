@@ -141,6 +141,11 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel9.setText("Mayor sueldo;");
 
         jLabel10.setText("jLabel10");
+        jLabel10.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                unaCosaMas(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -324,30 +329,47 @@ public class RegEmpleados extends javax.swing.JFrame {
     private void otraCosa(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_otraCosa
         // TODO add your handling code here:
         jLabel8.setText(ganaMas());
-    }//GEN-LAST:event_otraCosa
-    public String ganaMas(){
         
-        double horas = 0;
-        double pHora = 0;
-        double caja[] = {};
-        Datos_trabajadores datosT[] = new Datos_trabajadores[contador];
+    }//GEN-LAST:event_otraCosa
 
-        for(int n=0;n>contador;n++){
-        datosT[n].setNombre_empleado(tblDatos.getValueAt(n, 0).toString());
-        datosT[n].setSalario_por_hora(Integer.parseInt(tblDatos.getValueAt(n, 1).toString()));
-        datosT[n].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(n, 2).toString()));
-        horas = datosT[n].getCantidad_horas_trabajadas();
-            pHora = datosT[n].getSalario_por_hora();
-            double salario = (horas*pHora);
-            caja[n] = salario;
+    private void unaCosaMas(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unaCosaMas
+        // TODO add your handling code here:
+        jLabel10.setText("laskgnailgh");
+    }//GEN-LAST:event_unaCosaMas
+    public String ganaMas(){
+       Datos_trabajadores dat = new Datos_trabajadores();
+
+            dat.setNombre_empleado(txtnombreempleado.getText());
+            dat.setSalario_por_hora(Double.parseDouble(txtsalario.getText()));
+            dat.setCantidad_horas_trabajadas(Integer.parseInt(spcanthorastrabajadas.getValue().toString()));
+            
+            datos.add(dat);
+                    
+            double horas = dat.getCantidad_horas_trabajadas();
+            double pHora = dat.getSalario_por_hora();
+            
+            double sueldo = (horas*pHora);
+            double caja[] = new double[40];
+            caja[contador] = sueldo;
+        /*
+            double horas = 0;
+            double pHora = 0;
+            double caja[] = new double[contador];
+            
+        for(int i=0;i<contador;i++){
+            horas = Double.parseDouble(tblDatos.getValueAt(i, 2).toString());
+            pHora = Double.parseDouble(tblDatos.getValueAt(i, 1).toString());
+            double sueldo = (horas*pHora);
+            caja[i] = sueldo;
         }
         double max = caja[0];
-        for(int m=1;m<datosT.length;m++){
-            if(caja[m]>max){
-                max=caja[m];
+        for (int y = 1;y<caja.length;y++){
+            if (caja[y] > max){
+                max  = caja[y];
             }
         }
-        String x = String.valueOf(max);
+        */
+        String x = String.valueOf(caja[contador]);
         return  x;
 }
 
@@ -370,7 +392,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         spcanthorastrabajadas.setValue(0);
     }
     
-        public void cargar(){
+    public void cargar(){
          //cargar la lista al modelo, luego el modelo a la tabla
         modelo.setNumRows(0); //limpiando el modelo
         //metiendo los datos al modelo
