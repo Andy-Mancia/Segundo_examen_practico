@@ -46,8 +46,10 @@ public class Datos_trabajadores {
         this.cantidad_horas_trabajadas = cantidad_horas_trabajadas;
     }
         
-
-
-    
+    public double sumarSalario(){
+        double salario;
+        salario = salario_por_hora * cantidad_horas_trabajadas;
+        return salario;
+    }
     
 }

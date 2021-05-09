@@ -334,25 +334,34 @@ public class RegEmpleados extends javax.swing.JFrame {
 
     private void unaCosaMas(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_unaCosaMas
         // TODO add your handling code here:
-        jLabel10.setText("laskgnailgh");
+        jLabel10.setText("s´pkh");
     }//GEN-LAST:event_unaCosaMas
     public String ganaMas(){
-       Datos_trabajadores dat = new Datos_trabajadores();
-
-            dat.setNombre_empleado(tblDatos.getValueAt(0, 0).toString());
-            dat.setSalario_por_hora(Double.parseDouble(tblDatos.getValueAt(0, 1).toString()));
-            dat.setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(0, 2).toString()));
+        
+        
+        double caja[] = new double[contador];
+        double max = 0;
             
-            datos.add(dat);
-                    
-            double horas = dat.getCantidad_horas_trabajadas();
-            double pHora = dat.getSalario_por_hora();
+        for(int i=1;i<contador;i++){
+            Datos_trabajadores[] dat = new Datos_trabajadores[i];
+            dat[i].setNombre_empleado(tblDatos.getValueAt(i, 0).toString());
+            dat[i].setSalario_por_hora(Double.parseDouble(tblDatos.getValueAt(i, 1).toString()));
+            dat[i].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(i, 2).toString()));
+            datos.add(dat[i]);
             
-            double sueldo = (horas*pHora);
-            double caja[] = new double[20];
-            caja[0] = sueldo;
+            double sueldo = dat[i].sumarSalario();
+            caja[i] = sueldo;
             
-            return dat.getNombre_empleado();
+            max = caja[0];
+            for (int y = 1;y<caja.length;y++){
+                if (caja[y] > max){
+                  max  = caja[y];
+                }
+            }
+        }
+        String x = String.valueOf(max);
+        return  x;
+            
         /*
             double horas = 0;
             double pHora = 0;
