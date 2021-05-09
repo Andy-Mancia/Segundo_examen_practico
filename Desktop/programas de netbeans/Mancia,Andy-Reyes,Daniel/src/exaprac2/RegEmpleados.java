@@ -243,7 +243,7 @@ public class RegEmpleados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
   
     private void btnAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseClicked
-        // Creare un objeto llamado prod
+        // Creare un objeto llamado dat
         Datos_trabajadores dat = new Datos_trabajadores();
         //cargar el objeto con datos
         dat.setNombre_empleado(txtnombreempleado.getText());
@@ -342,7 +342,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         double caja[] = new double[contador];
         double max = 0;
             
-        for(int i=1;i<contador;i++){
+        for(int i=1;i>contador;i++){
             Datos_trabajadores[] dat = new Datos_trabajadores[i];
             dat[i].setNombre_empleado(tblDatos.getValueAt(i, 0).toString());
             dat[i].setSalario_por_hora(Double.parseDouble(tblDatos.getValueAt(i, 1).toString()));
@@ -359,29 +359,9 @@ public class RegEmpleados extends javax.swing.JFrame {
                 }
             }
         }
+        
         String x = String.valueOf(max);
         return  x;
-            
-        /*
-            double horas = 0;
-            double pHora = 0;
-            double caja[] = new double[contador];
-            
-        for(int i=0;i<contador;i++){
-            horas = Double.parseDouble(tblDatos.getValueAt(i, 2).toString());
-            pHora = Double.parseDouble(tblDatos.getValueAt(i, 1).toString());
-            double sueldo = (horas*pHora);
-            caja[i] = sueldo;
-        }
-        double max = caja[0];
-        for (int y = 1;y<caja.length;y++){
-            if (caja[y] > max){
-                max  = caja[y];
-            }
-        }
-        String x = String.valueOf();
-        return  x;
-        */
 }
 
     public String planilla(){
