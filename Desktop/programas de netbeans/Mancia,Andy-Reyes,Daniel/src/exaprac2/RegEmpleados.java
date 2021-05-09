@@ -61,6 +61,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("Aharoni", 1, 12)); // NOI18N
@@ -127,7 +128,7 @@ public class RegEmpleados extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Total:");
+        jLabel7.setText("Total planilla:");
 
         jLabel8.setText("jLabel8");
         jLabel8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -135,6 +136,8 @@ public class RegEmpleados extends javax.swing.JFrame {
                 otraCosa(evt);
             }
         });
+
+        jLabel9.setText("Mayor sueldo;");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,8 +176,10 @@ public class RegEmpleados extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 82, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -213,7 +218,9 @@ public class RegEmpleados extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
@@ -320,7 +327,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         Datos_trabajadores datosT[] = new Datos_trabajadores[contador];
 
         for(int n=0;n>contador;n++){
-        datosT[n].setNombre_empleado(tblDatos.getValueAt(n, 0).toString());
+        datosT[n].setNombre_empleado("placeholder");
         datosT[n].setSalario_por_hora(Integer.parseInt(tblDatos.getValueAt(n, 1).toString()));
         datosT[n].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(n, 2).toString()));
         horas = datosT[n].getCantidad_horas_trabajadas();
@@ -328,15 +335,13 @@ public class RegEmpleados extends javax.swing.JFrame {
             double salario = (horas*pHora);
             caja[n] = salario;
         }
-        /*
         double max = caja[0];
         for(int m=1;m<datosT.length;m++){
             if(caja[m]>max){
                 max=caja[m];
             }
         }
-        */
-        String x = String.valueOf(datosT[0].getNombre_empleado());
+        String x = String.valueOf(max);
         return  x;
 }
 
@@ -419,6 +424,7 @@ public class RegEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSpinner spcanthorastrabajadas;
     private javax.swing.JTable tblDatos;
