@@ -333,7 +333,7 @@ public class RegEmpleados extends javax.swing.JFrame {
         Datos_trabajadores datosT[] = new Datos_trabajadores[contador];
 
         for(int n=0;n>contador;n++){
-        datosT[n].setNombre_empleado("placeholder");
+        datosT[n].setNombre_empleado(tblDatos.getValueAt(n, 0).toString());
         datosT[n].setSalario_por_hora(Integer.parseInt(tblDatos.getValueAt(n, 1).toString()));
         datosT[n].setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(n, 2).toString()));
         horas = datosT[n].getCantidad_horas_trabajadas();
