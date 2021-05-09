@@ -339,9 +339,9 @@ public class RegEmpleados extends javax.swing.JFrame {
     public String ganaMas(){
        Datos_trabajadores dat = new Datos_trabajadores();
 
-            dat.setNombre_empleado(txtnombreempleado.getText());
-            dat.setSalario_por_hora(Double.parseDouble(txtsalario.getText()));
-            dat.setCantidad_horas_trabajadas(Integer.parseInt(spcanthorastrabajadas.getValue().toString()));
+            dat.setNombre_empleado(tblDatos.getValueAt(0, 0).toString());
+            dat.setSalario_por_hora(Double.parseDouble(tblDatos.getValueAt(0, 1).toString()));
+            dat.setCantidad_horas_trabajadas(Integer.parseInt(tblDatos.getValueAt(0, 2).toString()));
             
             datos.add(dat);
                     
@@ -349,8 +349,10 @@ public class RegEmpleados extends javax.swing.JFrame {
             double pHora = dat.getSalario_por_hora();
             
             double sueldo = (horas*pHora);
-            double caja[] = new double[40];
-            caja[contador] = sueldo;
+            double caja[] = new double[20];
+            caja[0] = sueldo;
+            
+            return dat.getNombre_empleado();
         /*
             double horas = 0;
             double pHora = 0;
@@ -368,9 +370,9 @@ public class RegEmpleados extends javax.swing.JFrame {
                 max  = caja[y];
             }
         }
-        */
-        String x = String.valueOf(caja[contador]);
+        String x = String.valueOf();
         return  x;
+        */
 }
 
     public String planilla(){
